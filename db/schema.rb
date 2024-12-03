@@ -25,8 +25,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_075904) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "types_id"
-    t.index ["types_id"], name: "index_places_on_types_id"
+    t.integer "type_id"
+    t.index ["type_id"], name: "index_places_on_type_id"
   end
 
   create_table "types", force: :cascade do |t|
