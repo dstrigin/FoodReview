@@ -3,13 +3,13 @@
 one:
   name: MyString
   address: MyString
-  type: 
+  type_id: 1
   category_id: 1
   description: MyText
 
 two:
   name: MyString
   address: MyString
-  type: 
+  type_id: 1
   category_id: 1
   description: MyText
