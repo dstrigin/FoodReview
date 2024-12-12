@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   resources :categories
   resources :places
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
@@ -13,4 +11,22 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "places#index"
+
+  # Authentication routes
+  post "/register", to: "auth#registery"
+  post "/login", to: "auth#login"
+  post "/verify", to: "auth#verify"
+
+  # Places routes
+  get "/categories", to: "categories#index"
+  get "/cuisines", to: "cuisines#index"
+
+  # Reviews routes
+  post "/places/review", to: "reviews#create"
+  get "/places/reviews/:id", to: "reviews#show", as: :place_reviews
+
+  # User routes
+  get "/users/me", to: "users#me", as: :current_user
+  get "/users/:id", to: "users#show", as: :user
+  get "/users/reviews/:id", to: "users#reviews", as: :user_reviews
 end
