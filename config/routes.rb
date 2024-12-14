@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/index"
   resources :categories
   resources :places
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,4 +14,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "places#index"
+
+  # Categories
+  get "categories" => "categories#index"
 end
