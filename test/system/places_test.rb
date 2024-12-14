@@ -7,12 +7,12 @@ class PlacesTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit places_url
-    assert_selector "h1", text: "Places"
+    assert_selector "h2", text: "Заведения"
   end
 
   test "should create place" do
     visit places_url
-    click_on "New place"
+    click_on "Добавить заведение"
 
     click_on "Create Place"
 
