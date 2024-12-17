@@ -1,10 +1,80 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoodReview</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<%= render @category %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <style>
+      body {
+          background-color: #FFE5D4;
+      }
 
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
+      .place-link {
+          display: block;
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #6c757d;
+          text-decoration: none;
+          text-align: center;
+          margin-bottom: 15px;
+          transition: color 0.3s ease-in-out;
+      }
 
-  <%= button_to "Destroy this category", @category, method: :delete %>
+      .place-link:hover {
+          color: #74c5fb; /* Красный цвет при наведении */
+      }
+
+      .action-buttons {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          display: flex;
+          gap: 10px;
+          z-index: 1000;
+      }
+
+      .action-button {
+          font-weight: bold;
+          text-decoration: none;
+          font-size: 0.9rem;
+          padding: 8px 12px;
+          border-radius: 20px;
+          background-color: #fcba8d;
+          color: #fff6f0;
+          border-color: transparent;
+          text-align: center;
+      }
+
+      .action-button:hover {
+          color: white;
+      }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <header class="text-center mb-5">
+    <h1 class="display-4">FoodReview</h1>
+    <p class="lead text-muted">Обзоры на заведения Ростова-на-Дону</p>
+  </header>
+
+  <section>
+    <h2 class="h4 mb-4 text-center">Заведения с категорией '<%= @category.name %>'</h2>
+
+    <% if @places.any? %>
+      <% @places.each do |place| %>
+        <%= link_to place.name, place_path(place), class: "place-link" %>
+      <% end %>
+    <% else %>
+      <p class="text-muted text-center">Заведений с категорией '<%= @category.name %>' пока нет. Добавьте такое и оставляйте отзыв на него!</p>
+    <% end %>
+  </section>
 </div>
+
+<div class="action-buttons">
+  <%= link_to 'Назад', categories_path, class: "btn action-button" %>
+</div>
+</body>
+</html>
