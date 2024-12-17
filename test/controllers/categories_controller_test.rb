@@ -34,7 +34,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update category" do
-    patch category_url(@category), params: { category: {name: "Новое имя"} }
+    patch category_url(@category), params: { category: { name: "Новое имя" } }
     assert_redirected_to category_url(@category)
   end
 
