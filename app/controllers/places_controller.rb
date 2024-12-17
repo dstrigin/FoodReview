@@ -66,6 +66,6 @@ class PlacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def place_params
-      params.fetch(:place, {})
+      params.require(:place).permit(:name, :address, :description, :category_id, :type_id)
     end
 end
