@@ -18,6 +18,6 @@ class CategoriesTest < ApplicationSystemTestCase
 
     visit categories_url
 
-    assert_text "Категорий мест пока нет"
+    assert_text "Категорий заведений пока нет"
   end
 end
