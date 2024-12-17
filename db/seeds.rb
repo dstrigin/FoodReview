@@ -15,3 +15,23 @@ Place.create(
                  category_id: Category.find_by(name: "Азиатская кухня")&.id
                }
 )
+
+Place.create(
+  {
+    name: "Кекс",
+    address: "Коммунистический, 36/4 (парк Сказка)",
+    description: "Уютная кофейня с большим ассортиментом. Вы точно найдете, чем согреться",
+    type_id: Type.find_by(name: "Кофейня")&.id,
+    category_id: Category.find_by(name: "Кофе")&.id
+  }
+)
+
+Place.create(
+  {
+    name: "Kikchak",
+    address: "Соборный 17/53",
+    description: "Восхваленная многими ростовчанами шаурма. Не оставайтесь в стороне и попробуйте",
+    type_id: Type.find_by(name: "Кафе")&.id,
+    category_id: Category.find_by(name: "Стритфуд")&.id
+  }
+)
