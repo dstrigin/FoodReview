@@ -1,10 +1,50 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoodReview | <%= @place.name %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<%= render @place %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <style>
+      body {
+          background-color: #FFE5D4;
+      }
 
-<div>
-  <%= link_to "Edit this place", edit_place_path(@place) %> |
-  <%= link_to "Back to places", places_path %>
+      .place-photo {
+          width: 100%;
+          height: 300px;
+          background-color: #ddd;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          color: #888;
+      }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <header class="text-center mb-4">
+    <h1 class="display-4"><%= @place.name %></h1>
+  </header>
 
-  <%= button_to "Destroy this place", @place, method: :delete %>
+  <div class="place-photo mb-4">
+    <span>Фото заведения</span>
+  </div>
+
+  <section>
+    <h2 class="h5 text-muted mb-3">Адрес:</h2>
+    <p class="lead"><%= @place.address %></p>
+
+    <h2 class="h5 text-muted mb-3">Описание:</h2>
+    <p class="text-justify"><%= @place.description %></p>
+  </section>
+
+  <div class="mt-4 mb-4 text-end">
+    <%= link_to 'Назад', :back, class: "btn btn-outline-secondary" %>
+  </div>
 </div>
+</body>
+</html>

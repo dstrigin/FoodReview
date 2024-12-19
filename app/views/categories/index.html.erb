@@ -1,16 +1,84 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoodReview</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<% content_for :title, "Categories" %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <style>
+      body {
+          background-color: #FFE5D4; /* Нежный бледно-персиковый фон */
+      }
 
-<h1>Categories</h1>
+      .category-link {
+          display: block;
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #2E2F30;
+          text-decoration: none;
+          text-align: center;
+          margin-bottom: 15px;
+          transition: color 0.3s ease-in-out;
+      }
 
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
+      .category-link:hover {
+          color: #74c5fb; /* Красный цвет при наведении */
+      }
+
+      .action-buttons {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          display: flex;
+          gap: 10px;
+          z-index: 1000;
+      }
+
+      .back-button {
+          position: fixed;
+          bottom: 20px;
+          right: 100px;
+          font-size: 0.9rem;
+          padding: 8px 12px;
+          border-radius: 20px;
+          z-index: 1000;
+          background-color: #fcba8d;
+          color: #fff6f0;
+          border-color: transparent;
+          font-weight: bold;
+          text-decoration: none;
+          text-align: center;
+      }
+
+      .back-button:hover {
+          color: white;
+      }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <header class="text-center mb-5">
+    <h1 class="display-4">FoodReview</h1>
+    <p class="lead text-muted">Обзоры на заведения Ростова-на-Дону</p>
+  </header>
+
+  <section>
+    <h2 class="h4 mb-4 text-center">Категории</h2>
+
+    <% if @categories.any? %>
+      <% @categories.each do |category| %>
+        <%= link_to category.name, category_path(category), class: "category-link" %>
+      <% end %>
+    <% else %>
+      <p class="text-muted text-center">Категорий заведений пока нет</p>
+    <% end %>
+  </section>
 </div>
 
-<%= link_to "New category", new_category_path %>
+<div class="action-buttons">
+  <%= link_to 'Назад', root_path, class: "btn back-button" %>
+</div>
+</body>
+</html>

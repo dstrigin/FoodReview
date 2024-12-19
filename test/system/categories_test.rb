@@ -2,38 +2,22 @@ require "application_system_test_case"
 
 class CategoriesTest < ApplicationSystemTestCase
   setup do
-    @category = categories(:one)
+    @category1 = categories(:one)
+    @category2 = categories(:two)
   end
 
-  test "visiting the index" do
+  test "categories are listed" do
     visit categories_url
-    assert_selector "h1", text: "Categories"
+
+    assert_text @category1.name
+    assert_text @category2.name
   end
 
-  test "should create category" do
+  test "no categories displays a message" do
+    Category.delete_all
+
     visit categories_url
-    click_on "New category"
 
-    click_on "Create Category"
-
-    assert_text "Category was successfully created"
-    click_on "Back"
-  end
-
-  test "should update Category" do
-    visit category_url(@category)
-    click_on "Edit this category", match: :first
-
-    click_on "Update Category"
-
-    assert_text "Category was successfully updated"
-    click_on "Back"
-  end
-
-  test "should destroy Category" do
-    visit category_url(@category)
-    click_on "Destroy this category", match: :first
-
-    assert_text "Category was successfully destroyed"
+    assert_text "Категорий заведений пока нет"
   end
 end

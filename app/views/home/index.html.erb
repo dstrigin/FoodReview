@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoodReview</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <style>
+      body {
+          background-color: #FFE5D4; /* Нежный бледно-персиковый фон */
+      }
+
+      .category-link {
+          display: block;
+          font-size: 2.2rem;
+          font-weight: bold;
+          color: #000000;
+          text-decoration: none;
+          text-align: center;
+          margin-bottom: 25px;
+          transition: color 0.3s ease-in-out;
+      }
+
+      .category-link:hover {
+          color: #fd7e14;
+      }
+
+      .places-link {
+          display: block;
+          font-size: 2.2rem;
+          font-weight: bold;
+          color: #000000;
+          text-decoration: none;
+          text-align: center;
+          margin-bottom: 25px;
+          transition: color 0.3s ease-in-out;
+      }
+
+      .places-link:hover {
+          color: #fd7e14;
+      }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <!-- Header -->
+  <header class="text-center mb-5">
+    <h1 class="display-4">FoodReview</h1>
+    <p class="lead text-muted">Обзоры на заведения Ростова-на-Дону</p>
+  </header>
+
+  <!-- List of Places -->
+  <section>
+    <h2><%= link_to 'Категории', '/categories', class: "category-link"%></h2>
+    <h2><%= link_to 'Заведения', '/places', class: "places-link"%></h2>
+  </section>
+</div>
+</body>
+</html>

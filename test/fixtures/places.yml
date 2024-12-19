@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyString
+  name: Шавурма
+  address: Мильчакова 8б
   type_id: 1
   category_id: 1
-  description: MyText
+  description: Лучшая шаверма в Ростове по мнению абсолютно любого студента мехмата
 
 two:
-  name: MyString
-  address: MyString
-  type_id: 1
-  category_id: 1
-  description: MyText
+  name: Кофейня с котиками
+  address: Усатая 33
+  type_id: 2
+  category_id: 2
+  description: Котокафе? Кафекото? Трогайте котиков, пейте кофе, только не приходить с макбуками и важными лицами!!1!

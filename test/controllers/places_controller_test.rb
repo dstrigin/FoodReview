@@ -16,8 +16,10 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create place" do
-    assert_difference("Place.count") do
-      post places_url, params: { place: {} }
+    category = categories(:one)
+    type = types(:one)
+    assert_difference("Place.count", 1) do
+      post places_url, params: { place: { name: "у азиза", address: "Вымышленная, 13", description: "", category_id: category.id, type_id: type.id } }
     end
 
     assert_redirected_to place_url(Place.last)
@@ -34,9 +36,12 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update place" do
-    patch place_url(@place), params: { place: {} }
+    patch place_url(@place), params: { place: { name: "Новое имя", address: "Новый адрес", description: "Новое описание", category_id: categories(:one).id, type_id: types(:one).id } }
     assert_redirected_to place_url(@place)
+    @place.reload
+    assert_equal "Новое имя", @place.name
   end
+
 
   test "should destroy place" do
     assert_difference("Place.count", -1) do
