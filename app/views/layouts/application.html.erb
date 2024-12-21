@@ -1,23 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "Food Review" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title><%= content_for(:title) || "Food Review" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= yield :head %>
+  <%= yield :head %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-  </head>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  <style>
+      body {
+          background-color: #FFE5D4; /* Нежный бледно-персиковый фон */
+      }
 
-  <body>
-    <%= yield %>
-  </body>
+      .navbar {
+          width: 100%;
+          background-color: #FFC4A3; /* Глубокий персиковый фон */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 10px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1000;
+      }
+
+      .navbar a, .navbar span, .logout-button {
+          font-size: 1.2rem; /* Размер шрифта */
+          font-weight: bold; /* Жирный текст */
+          color: #000000; /* Цвет текста */
+          text-decoration: none; /* Убираем подчеркивание */
+          margin: 0 15px; /* Отступы для расстояния между элементами */
+          transition: color 0.3s ease-in-out; /* Плавный переход цвета */
+          background: none; /* Убираем фон для кнопки выхода */
+          border: none; /* Убираем рамку для кнопки выхода */
+          cursor: pointer; /* Указатель при наведении на кнопку */
+          padding: 0; /* Убираем внутренние отступы */
+      }
+
+      .navbar a:hover, .logout-button:hover {
+          color: #fd7e14; /* Цвет текста при наведении */
+      }
+
+      .navbar .nav-left {
+          display: flex;
+          align-items: center;
+      }
+
+      .navbar .nav-right {
+          display: flex;
+          align-items: center;
+      }
+  </style>
+</head>
+<body>
+<!-- Навигационная панель -->
+<div class="navbar">
+  <div class="nav-left">
+    <!-- Ссылка "Главная" -->
+    <a href="/">Главная</a>
+  </div>
+  <div class="nav-right">
+    <% if user_signed_in? %>
+      <!-- Email пользователя -->
+      <span><%= current_user.email %></span>
+      <!-- Кнопка выхода -->
+      <%= button_to "Выйти", destroy_user_session_path, method: :delete, class: "logout-button", data: { confirm: "Вы уверены?", turbo: false } %>
+    <% else %>
+      <!-- Ссылки для гостей -->
+      <a href="<%= new_user_registration_path %>">Регистрация</a>
+      <a href="<%= new_user_session_path %>">Вход</a>
+    <% end %>
+  </div>
+</div>
+
+<!-- Контент страницы -->
+<div style="margin-top: 80px;"> <!-- Отступ для фиксации навигационной панели -->
+  <%= yield %>
+</div>
+</body>
 </html>

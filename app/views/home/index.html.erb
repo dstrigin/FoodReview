@@ -12,7 +12,11 @@
           background-color: #FFE5D4; /* Нежный бледно-персиковый фон */
       }
 
-      .category-link {
+      .container {
+          margin-top: 80px; /* Отступ для фиксации навигационной панели */
+      }
+
+      .category-link, .places-link {
           display: block;
           font-size: 2.2rem;
           font-weight: bold;
@@ -23,22 +27,7 @@
           transition: color 0.3s ease-in-out;
       }
 
-      .category-link:hover {
-          color: #fd7e14;
-      }
-
-      .places-link {
-          display: block;
-          font-size: 2.2rem;
-          font-weight: bold;
-          color: #000000;
-          text-decoration: none;
-          text-align: center;
-          margin-bottom: 25px;
-          transition: color 0.3s ease-in-out;
-      }
-
-      .places-link:hover {
+      .category-link:hover, .places-link:hover {
           color: #fd7e14;
       }
   </style>
