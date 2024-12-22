@@ -2,24 +2,6 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[ show edit update destroy ]
   before_action :set_place
 
-  # GET /reviews or /reviews.json
-  def index
-    @reviews = Review.all
-  end
-
-  # GET /reviews/1 or /reviews/1.json
-  def show
-  end
-
-  # GET /reviews/new
-  def new
-    @review = @place.reviews.new
-  end
-
-  # GET /reviews/1/edit
-  def edit
-  end
-
   # POST /reviews or /reviews.json
   def create
     @review = @place.reviews.find_or_initialize_by(user: current_user)
@@ -31,19 +13,6 @@ class ReviewsController < ApplicationController
     else
       flash.now[:alert] = @review.errors.full_messages.to_sentence
       render :new
-    end
-  end
-
-  # PATCH/PUT /reviews/1 or /reviews/1.json
-  def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to @review, notice: "Review was successfully updated." }
-        format.json { render :show, status: :ok, location: @review }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
     end
   end
 

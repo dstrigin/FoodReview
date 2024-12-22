@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get "users/show"
-  get "users/destroy"
-  resources :reviews
   get "home/index"
   devise_for :users
 
   resources :categories
 
   resources :places do
-    resources :reviews, only: [ :new, :create ]
+    resources :reviews, only: [ :create, :update, :destroy ]
   end
 
   resources :users, only: [ :show ] do
