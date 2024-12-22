@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_14_203034) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_22_164746) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -28,6 +28,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_14_203034) do
     t.integer "category_id"
     t.index ["category_id"], name: "index_places_on_category_id"
     t.index ["type_id"], name: "index_places_on_type_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "place_id", null: false
+    t.integer "rating"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_reviews_on_place_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -51,4 +62,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_14_203034) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "reviews", "places"
+  add_foreign_key "reviews", "users"
 end
