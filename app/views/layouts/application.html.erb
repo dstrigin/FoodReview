@@ -6,9 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <%= yield :head %>
-
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" href="/icon.png" type="image/png">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -60,31 +58,74 @@
           display: flex;
           align-items: center;
       }
+
+      .flash-alert, .flash-notice {
+          max-width: 800px;
+          margin: 100px auto 20px; /* Отступ сверху для учета навбара */
+          padding: 10px;
+          border-radius: 5px;
+          text-align: center;
+      }
+
+      .flash-alert {
+          background-color: #f8d7da;
+          color: #721c24;
+          border: 1px solid #f5c6cb;
+      }
+
+      .flash-notice {
+          background-color: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+      }
+
+      .header-title {
+          text-align: center;
+          margin: 120px auto 20px; /* Учитываем высоту навбара */
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: #2E2F30; /* Основной цвет текста */
+      }
+
+      .header-subtitle {
+          text-align: center;
+          color: #6c757d; /* Более мягкий цвет для подзаголовка */
+          font-size: 1.2rem;
+          margin-bottom: 40px;
+      }
+
+      .container {
+          margin-top: 150px; /* Учитываем высоту навбара и заголовка */
+      }
   </style>
 </head>
 <body>
 <!-- Навигационная панель -->
 <div class="navbar">
   <div class="nav-left">
-    <!-- Ссылка "Главная" -->
     <a href="/">Главная</a>
   </div>
   <div class="nav-right">
     <% if user_signed_in? %>
-      <!-- Email пользователя -->
       <span><%= current_user.email %></span>
-      <!-- Кнопка выхода -->
       <%= button_to "Выйти", destroy_user_session_path, method: :delete, class: "logout-button", data: { confirm: "Вы уверены?", turbo: false } %>
     <% else %>
-      <!-- Ссылки для гостей -->
       <a href="<%= new_user_registration_path %>">Регистрация</a>
       <a href="<%= new_user_session_path %>">Вход</a>
     <% end %>
   </div>
 </div>
-
+<!-- Flash-сообщения -->
+<div>
+  <% if flash[:alert] %>
+    <div class="flash-alert"><%= flash[:alert] %></div>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="flash-notice"><%= flash[:notice] %></div>
+  <% end %>
+</div>
 <!-- Контент страницы -->
-<div style="margin-top: 80px;"> <!-- Отступ для фиксации навигационной панели -->
+<div class="container">
   <%= yield %>
 </div>
 </body>

@@ -1,6 +1,13 @@
 <h2 style="text-align: center; color: #333; margin-top: 50px;">Регистрация</h2>
 
 <div style="max-width: 400px; margin: 50px auto; padding: 20px; background: #FFFFFF; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <!-- Проверяем, если есть flash сообщение -->
+  <% if flash[:notice] %>
+    <div style="background-color: #ffecd9; color: #d16f2e; font-weight: bold; text-align: center; margin-bottom: 20px; padding: 10px; border-radius: 5px; border: 1px solid #d16f2e;">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
