@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[ show edit update destroy ]
+  before_action :set_place
 
   # GET /reviews or /reviews.json
   def index
@@ -12,7 +13,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    @review = Review.new
+    @review = @place.reviews.new
   end
 
   # GET /reviews/1/edit
@@ -21,16 +22,15 @@ class ReviewsController < ApplicationController
 
   # POST /reviews or /reviews.json
   def create
-    @review = Review.new(review_params)
+    @review = @place.reviews.new(review_params)
+    @review.user_id = current_user.id
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: "Review was successfully created." }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    puts 12345
+
+    if @review.save
+      redirect_to @place, notice: "Ваш отзыв успешно добавлен."
+    else
+      render :new
     end
   end
 
@@ -61,6 +61,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_place
+      @place = Place.find(params[:place_id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -72,7 +72,7 @@
   <div class="nav-right">
     <% if user_signed_in? %>
       <!-- Email пользователя -->
-      <span><%= current_user.email %></span>
+      <a href="<%= user_path(current_user) %>"><%= current_user.email %></a>
       <!-- Кнопка выхода -->
       <%= button_to "Выйти", destroy_user_session_path, method: :delete, class: "logout-button", data: { confirm: "Вы уверены?", turbo: false } %>
     <% else %>
