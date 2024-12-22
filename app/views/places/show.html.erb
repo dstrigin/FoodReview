@@ -65,7 +65,9 @@
   </section>
 
   <div class="button-group mt-4 mb-4">
-    <%= link_to 'Оставить отзыв', new_place_review_path(@place), class: "btn btn-primary" %>
+    <% if user_signed_in? %>
+      <%= link_to 'Оставить отзыв', new_place_review_path(@place), class: "btn btn-outline-secondary" %>
+    <% end %>
     <%= link_to 'Назад', places_path, class: "btn btn-outline-secondary" %>
   </div>
 
@@ -74,7 +76,7 @@
     <% if @place.reviews.any? %>
       <% @place.reviews.each do |review| %>
         <div class="review-item">
-          <h5>Оценка: <%= review.rating %> ⭐</h5>
+          <h5>Оценка: <%= 11 - review.rating %> ⭐</h5>
           <p><%= review.description %></p>
           <p class="text-muted small">Оставлен пользователем: <%= review.user.email %></p>
         </div>

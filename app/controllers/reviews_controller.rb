@@ -22,14 +22,14 @@ class ReviewsController < ApplicationController
 
   # POST /reviews or /reviews.json
   def create
-    @review = @place.reviews.new(review_params)
+    @review = @place.reviews.find_or_initialize_by(user: current_user)
     @review.user_id = current_user.id
-
-    puts 12345
+    @review.assign_attributes(review_params)
 
     if @review.save
       redirect_to @place, notice: "Ваш отзыв успешно добавлен."
     else
+      flash.now[:alert] = @review.errors.full_messages.to_sentence
       render :new
     end
   end
