@@ -1,0 +1,17 @@
+<h1>Профиль пользователя</h1>
+<p><strong>Email:</strong> <%= @user.email %></p>
+
+<h2>Отзывы</h2>
+<% if @reviews.any? %>
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <strong>Заведение:</strong> <%= link_to review.place.name, place_path(review.place) %><br>
+        <strong>Рейтинг:</strong> <%= review.rating %><br>
+        <strong>Описание:</strong> <%= review.description %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>У пользователя еще нет отзывов.</p>
+<% end %>

@@ -1,0 +1,15 @@
+one:
+  user_id: 1
+  place_id: 1
+  rating: 5
+  description: "Отличное место! Вкусно и уютно."
+  created_at: <%= 3.days.ago %>
+  updated_at: <%= 2.days.ago %>
+
+two:
+  user_id: 2
+  place_id: 2
+  rating: 3
+  description: "Среднее качество еды, но хорошее обслуживание."
+  created_at: <%= 5.days.ago %>
+  updated_at: <%= 4.days.ago %>
