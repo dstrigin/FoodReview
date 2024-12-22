@@ -1,0 +1,7 @@
+# test/fixtures/users.yml
+
+user_one:
+  email: user1@example.com
+
+user_two:
+  email: user2@example.com

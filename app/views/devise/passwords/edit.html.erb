@@ -1,0 +1,35 @@
+<h2 style="text-align: center; color: #333; margin-top: 50px;">Изменение пароля</h2>
+
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; background: #FFFFFF; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :password, "Новый пароль", style: "font-weight: bold; color: #333;" %><br />
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> символов минимум)</em><br />
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", style: "width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;" %>
+    </div>
+
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :password_confirmation, "Подтвердите новый пароль", style: "font-weight: bold; color: #333;" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;" %>
+    </div>
+
+    <div class="actions" style="text-align: center;">
+      <%= f.submit "Изменить пароль", style: "background-color: #fd7e14; color: white; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease-in-out;" %>
+    </div>
+  <% end %>
+
+  <div style="margin-top: 20px; text-align: center;">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+
+<style>
+    body {
+        background-color: #FFE5D4; /* Нежный бледно-персиковый фон */
+    }
+</style>
