@@ -79,8 +79,23 @@
           border: 1px solid #c3e6cb;
       }
 
+      .header-title {
+          text-align: center;
+          margin: 120px auto 20px; /* Учитываем высоту навбара */
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: #2E2F30; /* Основной цвет текста */
+      }
+
+      .header-subtitle {
+          text-align: center;
+          color: #6c757d; /* Более мягкий цвет для подзаголовка */
+          font-size: 1.2rem;
+          margin-bottom: 40px;
+      }
+
       .container {
-          margin-top: 120px; /* Учитываем высоту навбара */
+          margin-top: 150px; /* Учитываем высоту навбара и заголовка */
       }
   </style>
 </head>
@@ -88,17 +103,13 @@
 <!-- Навигационная панель -->
 <div class="navbar">
   <div class="nav-left">
-    <!-- Ссылка "Главная" -->
     <a href="/">Главная</a>
   </div>
   <div class="nav-right">
     <% if user_signed_in? %>
-      <!-- Email пользователя -->
       <span><%= current_user.email %></span>
-      <!-- Кнопка выхода -->
       <%= button_to "Выйти", destroy_user_session_path, method: :delete, class: "logout-button", data: { confirm: "Вы уверены?", turbo: false } %>
     <% else %>
-      <!-- Ссылки для гостей -->
       <a href="<%= new_user_registration_path %>">Регистрация</a>
       <a href="<%= new_user_session_path %>">Вход</a>
     <% end %>
@@ -113,7 +124,6 @@
     <div class="flash-notice"><%= flash[:notice] %></div>
   <% end %>
 </div>
-
 <!-- Контент страницы -->
 <div class="container">
   <%= yield %>
