@@ -2,7 +2,7 @@
   Type.create(name: name)
 end
 
-["Бар", "Русская кухня", "Стритфуд", "Азиатская кухня", "Итальянская кухня", "Кофе", "Выпечка", "Фюжн кухня", "Грузинская кухня"].each do |name|
+[ "Бар", "Русская кухня", "Стритфуд", "Азиатская кухня", "Итальянская кухня", "Кофе", "Выпечка", "Фюжн кухня", "Грузинская кухня" ].each do |name|
   Category.create(name: name)
 end
 
@@ -101,28 +101,28 @@ Place.create(
     description: "Семейное бистро с разнообразным меню и уютной атмосферой. Попробуйте их хинкали и шашлык.",
     type_id: Type.find_by(name: "Ресторан")&.id,
     category_id: Category.find_by(name: "Грузинская кухня")&.id,
-    pseudonym:"Puri_Puri"
+    pseudonym: "Puri_Puri"
   }
 )
 
 Place.create(
   {
     name: "Осака",
-    address:"Соборный пер., 30/58",
-    description:"Ресторан японской кухни, предлагающий свежие суши и роллы. Идеальное место для любителей японской гастрономии.",
-    type_id:Type.find_by(name:"Ресторан")&.id,
-    category_id:Category.find_by(name:"Азиатская кухня")&.id,
-    pseudonym:"Osaka"
+    address: "Соборный пер., 30/58",
+    description: "Ресторан японской кухни, предлагающий свежие суши и роллы. Идеальное место для любителей японской гастрономии.",
+    type_id: Type.find_by(name: "Ресторан")&.id,
+    category_id: Category.find_by(name: "Азиатская кухня")&.id,
+    pseudonym: "Osaka"
   }
 )
 
 Place.create(
   {
-    name:"Сицилия",
-    address:"Будённовский просп., 29",
-    description:"Итальянский ресторан, известный своими пастами и пиццей, приготовленными по традиционным рецептам.",
-    type_id:Type.find_by(name:"Ресторан")&.id,
-    category_id:Category.find_by(name:"Итальянская кухня")&.id,
-    pseudonym:"Sicilia"
+    name: "Сицилия",
+    address: "Будённовский просп., 29",
+    description: "Итальянский ресторан, известный своими пастами и пиццей, приготовленными по традиционным рецептам.",
+    type_id: Type.find_by(name: "Ресторан")&.id,
+    category_id: Category.find_by(name: "Итальянская кухня")&.id,
+    pseudonym: "Sicilia"
   }
 )
