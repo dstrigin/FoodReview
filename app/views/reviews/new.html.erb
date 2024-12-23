@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoodReview | <%= @place.name %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <style>
+      body {
+          background-color: #FFE5D4;
+      }
+
+      .button-group {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .rating-stars {
+          display: flex;
+          justify-content: center;
+          flex-direction: row-reverse; /* Реверсируем порядок звездочек */
+          margin-bottom: 15px;
+      }
+
+      .rating-stars input[type="radio"] {
+          display: none; /* Скрываем радиокнопки */
+      }
+
+      .rating-stars label {
+          font-size: 2rem;
+          color: #ddd; /* Цвет неактивных звезд */
+          cursor: pointer;
+          transition: color 0.3s ease-in-out;
+      }
+
+      .rating-stars label:hover,
+      .rating-stars label:hover ~ label {
+          color: #fd7e14; /* Цвет звезд при наведении */
+      }
+
+      .rating-stars input[type="radio"]:checked ~ label {
+          color: #fd7e14; /* Цвет звезд, выбранных пользователем */
+      }
+
+      textarea {
+          width: 100%;
+          height: 150px;
+          resize: none;
+          padding: 10px;
+          font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+      }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <header class="text-center mb-4">
+    <h1 class="display-4">Отзыв на <%= @place.name %></h1>
+  </header>
+
+  <%= form_with model: [@place, @review], local: true, data: { turbo: false } do |f| %>
+    <div class="form-group text-center">
+      <h2 class="h5 text-muted mb-3">Ваша оценка:</h2>
+      <div class="rating-stars">
+        <% (1..10).each do |star| %>
+          <%= f.radio_button :rating, star, id: "star#{star}" %>
+          <%= label_tag "star#{star}", "★", class: "star" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h2 class="h5 text-muted mb-3">Ваши впечатления:</h2>
+      <%= f.text_area :description, placeholder: "Напишите о ваших впечатлениях..." %>
+    </div>
+
+    <div class="button-group mt-4">
+      <%= f.submit 'Отправить отзыв', class: "btn btn-outline-secondary" %>
+      <%= link_to 'Назад', :back, class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+</div>
+</body>
+</html>
