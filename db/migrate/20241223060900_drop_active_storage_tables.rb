@@ -31,8 +31,8 @@ class DropActiveStorageTables < ActiveRecord::Migration[7.2]
     end
 
     add_index :active_storage_blobs, :key, unique: true
-    add_index :active_storage_attachments, [:record_type, :record_id, :name, :blob_id], unique: true, name: "index_active_storage_attachments_uniqueness"
-    add_index :active_storage_variant_records, [:blob_id, :variation_digest], unique: true, name: "index_active_storage_variant_records_uniqueness"
+    add_index :active_storage_attachments, [ :record_type, :record_id, :name, :blob_id ], unique: true, name: "index_active_storage_attachments_uniqueness"
+    add_index :active_storage_variant_records, [ :blob_id, :variation_digest ], unique: true, name: "index_active_storage_variant_records_uniqueness"
 
     add_foreign_key :active_storage_attachments, :active_storage_blobs, column: :blob_id
     add_foreign_key :active_storage_variant_records, :active_storage_blobs, column: :blob_id
