@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def asset_exists?(path)
-    Rails.application.assets.find_asset(path).present? || File.exist?(Rails.root.join("app/assets/images", path))
+  def asset_exists_with_fingerprint?(base_path, pseudonym, extension)
+    Dir.glob(Rails.root.join(base_path, "#{pseudonym}-*.#{extension}")).any?
   end
 end

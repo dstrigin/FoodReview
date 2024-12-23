@@ -54,12 +54,22 @@
   </header>
 
   <div class="place-photo mb-4">
-    <% if @place.pseudonym.present? && asset_exists?("places/#{@place.pseudonym}.jpg") %>
-      <%= image_tag "places/#{@place.pseudonym}.jpg", alt: @place.name, class: "img-fluid rounded" %>
+    <% if @place.pseudonym.present? %>
+      <% image_path = Dir.glob("public/assets/places/#{@place.pseudonym}-*.jpg").first %>
+      <% unless image_path %>
+        <% image_path = Dir.glob("public/assets/places/#{@place.pseudonym}.jpg").first %>
+      <% end %>
+
+      <% if image_path %>
+        <%= image_tag "/assets/places/#{image_path.split('/').last}", alt: @place.name, class: "img-fluid rounded" %>
+      <% else %>
+        <span>Фото отсутствует</span>
+      <% end %>
     <% else %>
       <span>Фото отсутствует</span>
     <% end %>
   </div>
+
 
   <section>
     <h2 class="h5 text-muted mb-3">Адрес:</h2>
