@@ -54,8 +54,8 @@
   </header>
 
   <div class="place-photo mb-4">
-    <% if @place.pseudonym.present? && asset_exists?("places/#{@place.pseudonym}.jpg") %>
-      <%= image_tag "places/#{@place.pseudonym}.jpg", alt: @place.name, class: "img-fluid rounded" %>
+    <% if @place.pseudonym.present? && asset_exists_with_fingerprint?('public/assets/places', @place.pseudonym, 'jpg') %>
+      <%= image_tag "/assets/places/#{Dir.glob("public/assets/places/#{@place.pseudonym}-*.jpg").first.split('/').last}", alt: @place.name, class: "img-fluid rounded" %>
     <% else %>
       <span>Фото отсутствует</span>
     <% end %>
