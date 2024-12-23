@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :places do
-    resources :reviews, only: [ :create, :update, :destroy ]
+    resources :reviews, only: [ :new, :create, :update, :destroy ]
   end
 
   resources :users, only: [ :show ] do
