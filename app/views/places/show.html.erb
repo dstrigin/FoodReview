@@ -54,10 +54,10 @@
   </header>
 
   <div class="place-photo mb-4">
-    <% if @place.image.attached? %>
-      <%= image_tag @place.image, alt: "Фото заведения" %>
+    <% if @place.pseudonym.present? && asset_exists?("places/#{@place.pseudonym}.jpg") %>
+      <%= image_tag "places/#{@place.pseudonym}.jpg", alt: @place.name, class: "img-fluid rounded" %>
     <% else %>
-      <span>Фото заведения отсутствует</span>
+      <span>Фото отсутствует</span>
     <% end %>
   </div>
 
