@@ -23,6 +23,28 @@
           height: 100%; /* Заставляет изображение занимать всю высоту контейнера */
           object-fit: cover; /* Обеспечивает правильное масштабирование изображения */
       }
+
+      .button-group {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .review-list {
+          margin-top: 30px;
+      }
+
+      .review-item {
+          padding: 15px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background-color: #fff;
+          margin-bottom: 15px;
+      }
+
+      .review-item h5 {
+          margin-bottom: 10px;
+      }
   </style>
 </head>
 <body>
@@ -47,8 +69,26 @@
     <p class="text-justify"><%= @place.description %></p>
   </section>
 
-  <div class="mt-4 mb-4 text-end">
-    <%= link_to 'Назад', :back, class: "btn btn-outline-secondary" %>
+  <div class="button-group mt-4 mb-4">
+    <% if user_signed_in? %>
+      <%= link_to 'Оставить отзыв', new_place_review_path(@place), class: "btn btn-outline-secondary" %>
+    <% end %>
+    <%= link_to 'Назад', places_path, class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="review-list">
+    <h2 class="h5 text-muted mb-3">Отзывы:</h2>
+    <% if @place.reviews.any? %>
+      <% @place.reviews.each do |review| %>
+        <div class="review-item">
+          <h5>Оценка: <%= 11 - review.rating %> ⭐</h5>
+          <p><%= review.description %></p>
+          <p class="text-muted small">Оставлен пользователем: <%= review.user.email %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-muted">Отзывов пока нет. Будьте первым, кто оставит отзыв!</p>
+    <% end %>
   </div>
 </div>
 </body>
