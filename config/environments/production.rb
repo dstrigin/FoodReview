@@ -46,10 +46,10 @@ Rails.application.configure do
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  # config.assume_ssl = true
+  config.assume_ssl = false
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
@@ -98,8 +98,27 @@ Rails.application.configure do
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
+  #   /.*\.env.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.gmail.com",
+    port:                 587,
+    domain:               "gmail.com",
+    user_name:            "freviews085@gmail.com",
+    password:             "pmhw feni vqbs evib",
+    authentication:       "plain",
+    enable_starttls_auto: true
+  }
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+
+  # Disable caching for Action Mailer templates even if Action Controller
+  # caching is enabled.
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.default_url_options = { host: "213.176.64.161", port: 3000 }
 end
